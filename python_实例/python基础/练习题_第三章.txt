@@ -1,0 +1,40 @@
+1.为什么python中不需要 变量名和变量名称的声明？
+    对象的类型和内存都是在运行时确定的。在创建时赋值，解释器会根据语法和右侧的数据
+    来确定对象类型。
+2.为什么不需要声明函数类型 ？
+    因为是‘弱类型’变量决定，在Java中存储一个数据前，先开辟固定的内存空间，并给
+    这个类型的空间唯一的id(变量名称)，python是上来就把数据存的内存中，然后在用
+    变量名去引用数据
+3.为什么要避免在变量名开始和结尾处使用双下划线？
+    因为下划线对解释器是有特殊意义的，而且是内建标识符所使用的符号。开头使用
+    下划线表示该变量为私有变量，而开头和结尾使用下划线__xxx__这种变量名对
+    Python来说有特殊含义，对于普通的变量应避免这种命名风格。
+4.python一个语句可以分成多行写吗？
+    可以,使用\,例如：if (a==1) and \
+    (b == 1 ):
+#变量间相互交换值
+5.x,y,z = 1,2,3 会在x,y,z中分别赋什么值？
+    x = 1   y = 2   z = 3
+6.执行z,x,y = y,z,x 后，x,y,z中分别是什么值？(第一次做错了)
+    思路：z,x,y = y,z,x 是并行的并不等于：
+    z = y
+    x = z
+    y = x
+7.下面那些事Python合法的标识符？如果不是，请说明理由！在合法的标识符中，那些是
+关键字？(此题第一次做错了)
+    int32          40XL          $aving$     printf      print
+    _print         this          self        __name__    0x40L
+    bool           true          big-daddy   2hot2touch  type
+    thisIsn'AVar   thisIsAVar    R_U_Ready   Int         Trye
+    if             do            counter-1   access      _
+    答案：
+    判断标准 ：
+        1.第一个字符 必须是字母或(_)
+        2.剩下的必须是 字母、数字、_
+        3.大小写敏感
+    合法标识符：int32、40XL、printf、print、_print、this、self、__name__
+    bool、true、big-daddy、type、thisIsAVar、R_U_Ready、Int、access、_
+    不合法标识：$aving$、0x40L、2hot2touch、thisIsn'AVar、counter-1
+    关键字：print、if
+7、8、9、10、11、12、13 在io部分补充
+

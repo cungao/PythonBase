@@ -1,0 +1,80 @@
+1.将两个字典合并成一个.
+#将两个dict合并成一个
+dic1 ={1:'a',2:'c',3:'b'}
+dic2 ={1:'x',5:'y',5:'z'}
+dic3 = {}
+dic3.update(dic1)
+dic3.update(dic2)
+print(dic3)
+
+2.将两个list合并成一个dict
+#将两个list合并成一个dict
+list_key = [1,2,3,4]
+list_value = ['x','y','z','m']
+zip = zip(list_key,list_value)
+print(dict(list(zip)))
+
+3.颠倒字典中key和value。rev_dict(dict)
+#颠倒dict的key和value
+dic = {1:'x',2:'y',3:'z'}
+def rev_dict(dic):
+    return dict(list(zip(dic.values(),dic.keys())))
+print(rev_dict(dic))
+
+
+4.人力资源 创建一个简单的雇员姓名和编号的程序。让用户输入一组雇员姓名和编号。你的程序可以提供一个按照姓名排序的功能
+，雇员姓名在前面，后面是对应的雇员编号。附件一个功能：添加一项功能，按照雇员编号顺序输出数据。
+#接受姓名，编码 按照姓名排序打印出来
+time1 = int(input('请输入本次记录的人数'))
+dic1 ={}
+dic2 ={}
+dic3 ={}
+for index in range(time1):
+    name_id = input('请输入姓名和编码')
+    name_list = name_id.split(',')
+    dic1[name_list[0]] = name_list[1]
+print(dic1)
+key_list= list(dic1.keys())
+value_list = list(dic1.values())
+dic1 = dict(list(zip(value_list,key_list)))
+key_list.sort()
+value_list.sort()
+print(key_list)
+for index in key_list:
+    dic2[index] = dic1[index]
+print(dic2)
+for index in value_list:
+    dic3[dic1[index]] = index;
+
+5.随机数。使用random模块中的randint()或randrange()方法生成一个随机数集合：从0到9（包括9）
+随机选择，生成1到10个随机数。这些数字组成集合A。同理，按此方法生成集合B。每次新生成集合A和
+集合B后，显示A|B和A&B
+#A、B集合取交集
+a=[2,3,4,5]
+b=[2,5,8]
+#交
+tmp = [val for val in a if val in b]
+print('a交b：',tmp)
+#交2
+print('a交b：',list(set(a).intersection(set(b))))
+#并
+print('a并b',list(set(a).union(set(b))))
+#差
+print('a差b',list(set(b).difference(set(a))))
+
+6.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

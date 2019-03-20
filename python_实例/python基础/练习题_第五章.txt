@@ -1,0 +1,150 @@
+1.普通整型和长整型的区别？
+    答案：python3中整数只有一种类型int
+2.写一个函数，计算乘积结果并调用？
+    def GetMul(a,b):
+        a = int(a)
+        b = int(b)
+        return a*b
+    print(GetMul(1,7))
+3.写一段脚本，要求输入输入成绩，根据下面的标准，输出他的评分
+成绩(A-F)
+    A:90-100
+    B:80-89
+    C:70-79
+    D:60-69
+    F:<60
+    答案：
+    #通知台输入成绩，打印出成绩评分
+def GetClass(score):
+    try:
+        score =int(score)
+    except Exception as err:
+        print('input a number')
+        raise
+
+    if(90<=score<=100):
+        return 'A'
+    elif(80<=score<=89):
+        return 'B'
+    elif(70<=score<=79):
+        return 'C'
+    elif(60<=score<=69):
+        return 'D'
+    elif(0 <= score < 60 ):
+        return 'F'
+    else:
+        return "You're kidding"
+score = input("press score,enter to confirm")
+print(GetClass(score))
+
+4.判断给定年份是不是闰年？
+    提示 ：x年能被4整除且不能被100整除
+          x年能被4整除且能被100整除
+    答案：
+#判断是否为闰年
+def if_LeapYear(year):
+    if((year % 4 == 0) and (year % 100 !=0)):
+        print(year,' 是闰年')
+    elif((year % 4 == 0) and (year % 100 ==0)):
+        print(year,' 是闰年')
+    else:
+        print(year,' 是平年')
+
+year = int(input('please input year:'))
+if_LeapYear(year)
+
+5.给你一个日期，计算出距离今天差？
+    答案：
+import datetime
+#求输入日期距离现在多少天了
+def fromToday(TheDay):
+    TheDay = datetime.datetime.strptime(TheDay,'%Y%m%d')
+    today = datetime.datetime.today();
+    FDate = datetime.datetime.strftime(TheDay,'%Y%m%d')
+    print(FDate,'距离今天已经：',(today - TheDay).days ,'天了')
+
+Theday = input("请输入要查询的日期：")
+fromToday(Theday)
+
+6.取一个任意小于1美元的金额，然后计算可以完成最好多少没硬币？硬币有1美分、5美分、10美分、25美分四种。一美元
+等于100美分。举例来说：0.76美元换算结果是3*25美分、1*1美分
+    答案：
+    76 / 3
+def GetCoin(money):
+    list = [25, 10, 5, 1]
+    rem = float(money)*100
+    for index in range(4):
+        value = int((rem / list[index]))
+        if ( value > 0):
+            print(int(value), '个', list[index], '美分');
+        else:
+            continue
+        rem = rem % list[index]
+GetCoin(input("请输入一个小于1美元值"))
+
+7.写一个计算器程序，要求可以接受这样的表达式，两个操作数加一个运算符：N1 运算符 N2 ,其中N1和N2
+为整型或者浮点型。预算符为+、-、*、/、%、**，计算这个表达式的结果，并显示出来
+    答案：
+import re
+def GetResulet(expre):
+    exp = re.search('([0-9.]+)([/+/-/*/%//]+)(.+)', expre)
+    N1 = exp.group(1)
+    N2 = exp.group(3)
+    symbol = exp.group(2)
+    print(N1)
+    print(N2)
+    print(symbol)
+    if(N1.find('.') > 0):
+        N1 = float(N1)
+    else:
+        N1 = int(N1)
+    if(N2.find('.') > 0):
+        N2 = float(N2)
+    else:
+        N2 = int(N2)
+    if(symbol == '+'):
+        return N1+N2
+    if(symbol == '-'):
+        return N1-N2
+    if(symbol == '*'):
+        print(type(N1))
+        return N1*N2
+    if(symbol == '/'):
+        print(type(N1))
+        return N1/N2
+    if(symbol == '%'):
+        print(type(N1))
+        return N1%N2
+    if(symbol == '**'):
+        print(type(N1))
+        return N1**N2
+print('结果：',GetResulet(input("请输入一个计算表达式：")))
+
+8.回答下面关于数值格式的问题？
+(a) 为什么下面的例子里 17  + 32   = 49
+                    017 + 32   = 41
+                    017 + 032  = 41
+    答案：17 32 为10进制，032 017 为8 进制
+
+9.生成一个有N个元素由随机数n组成的列表,其中N和n的取值范围为：
+N (1,100] n [0,230] ,然后再从这个列表中去取N [0,100]个随机数，
+并且对他们排序，打印子序列。
+    答案：
+import random
+list = []
+for index in range(random.randint(2,100)):
+    list.append(random.randint(0,230))
+list_ = []
+for index in range(random.randint(1,100)):
+    list_.append(list[index])
+print(list_)
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+<bookstore>
+<!--四大名著-->
+    <book category="西游记">
+            <title lang="ch">chinese</title>
+            <author>吴承恩</author>
+            <year>2018</year>
+            <price>50.2</price>
+    </book>
+
+    <book category="水浒传">
+            <title lang="en">english</title>
+            <author>施耐庵</author>
+            <year>2018</year>
+            <price>47.2</price>
+    </book>
+
+    <book category="红楼梦">
+            <title lang="ch">chaines</title>
+            <author>曹雪芹</author>
+            <year>2018</year>
+            <price>66.2</price>
+    </book>
+
+</bookstore>

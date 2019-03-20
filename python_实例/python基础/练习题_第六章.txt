@@ -1,0 +1,286 @@
+1.string模块中是否有一方法帮我鉴定一下一个字符串是否是一个字符串的一部分？
+    答案：'str1' in 'string'
+
+2.检测字符串长度，并且可以识别Python关键字，对后一个要求可以只用keyword模块。
+    答案：
+import keyword
+str = "TeTrueStringdefbreak"
+kwlist = keyword.kwlist
+print("获取字符串长度：",len(str))
+#识别其中关键字
+for index in kwlist:
+    if(index in str):
+        print(str,'包含关键字：',index)
+
+3.排序
+  (a).输入一串数字，从大到小排列之
+      答案：
+#接受一串数字
+number_str = input("请出入一串数字，逗号分隔")
+list_ = number_str.split(',')
+list_.sort(reverse=True)
+print(list_)
+  (b).和a一样，不过要用字典序从大到小排列。
+#接受一串数字
+k_v = input("请输入字典key:value 逗号分隔")
+dic = {}
+dic_= {}
+list = []
+for kv in k_v.split(','):
+    dic[kv.split(':')[0]] = kv.split(':')[1]
+print(dic.keys())
+for key in dic.keys():
+    list.append(key)
+list.sort(reverse=True)
+for index in list:
+    dic_[index] = dic[index]
+print(dic_)
+
+
+4.字符串。创建一个string.strip()的替代函数：接受一个字符串，去掉他们前后的空格。
+def str_strip(str,*args):
+    list_str = list(str);
+    isNot = len(args);
+    if isNot == 0:
+        for i in range(len(list_str)):
+            if list_str[0] == ' ':
+                list_str.pop(0);
+            elif list_str[::-1][0] == ' ':
+                list_str.pop()
+            else:
+                return ''.join(list_str)
+                break;
+    else:
+        char = args[0];
+        for i in range(len(list_str)):
+            if list_str[0] == char:
+                list_str.pop(0);
+            elif list_str[::-1][0] == char:
+                list_str.pop()
+            else:
+                return ''.join(list_str)
+                break;
+
+print(str_strip('aaagaocuaaa','a'));
+
+6 - 8:列表。给定一个整数值，返回该值得英文，比如输入89返回“night-nine”。
+#输入89 返回eighty-nine
+db_num =\
+{0: "zero", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
+7:"seven", 8:"eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve",
+13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen", 17: "seventeen",
+18: "eighteen", 19: "nineteen",20: "twenty", 30: "thirty", 40: "forty",
+50: "fifty", 60: "sixty",
+70: "seventy", 80: "eighty", 90: "ninety", 100: "hundred",
+1000: "thousand", 1e6: "million", 1e9: "billion", 1e12: "trillon"};
+
+def  num2eng(num):
+    if num > 1000:
+        print("sorry can't be counted!!")
+    elif num >= 100:
+        hun = int(num / 100);
+        tens = num % 100;
+        if tens > 20:
+            ten = int(tens / 10) * 10
+            theu = tens % 10
+            print(db_num[hun], 'hundred and', db_num[ten], '-', db_num[theu])
+        else:
+            print(db_num[hun], ' hundre and', db_num[tens])
+    else:
+        if num > 20:
+            ten = int(num / 10) * 10
+            theu = num % 10
+            print(db_num[ten], '-', db_num[theu])
+        else:
+            print(db_num[num])
+
+num2eng(123);
+
+6-9:写一个函数，返回一个跟输入字符串相似的字符串，要求字符串的大小写反转，比如
+输入“Mr.Ed”,应该返回“mR.eD”作为输出。
+#大小写转换
+def lo2up(str):
+    str_list = list(str);
+    for index in range(len(str_list)):
+        if str_list[index].isalpha():
+            if str_list[index].islower():
+                str_list[index] = str_list[index].upper();
+            else:
+                str_list[index] = str_list[index].lower();
+        else:
+            pass;
+    return ''.join(str_list);
+
+print('ga.CN',lo2up('ga.CN'))
+
+6-11 转换
+    (1).创建一个从整数到IP地址的转换程序，如下格式：www.xxx.yyy.zzz
+     #需求：将123456788转换为123.456.788
+def  to_web(num):
+    str_list = list(str(num));
+    new_list = [];
+    print(str_list)
+    re = 3;
+    re_list = [];
+    for index in range(len(str_list)):
+        if (len(new_list) in re_list):
+            new_list.append('.');
+        else:
+            new_list.append(str_list[index])
+        re_list.append(re);
+        re = re + 4;
+    return ''.join(new_list) ;
+print(to_web(123456789011223311))
+
+    (2)更新你的程序，使之可以逆转换。
+#需求：将123.456.788转换为123456788
+def to_num(web):
+    str_list = list(web);
+    for index in range(len(str_list)):
+        if(str_list[index] == '.'):
+            str_list[index] = ''
+    return ''.join(str_list)
+print(to_num('123.456.789'))
+
+6-12.字符串
+    (a)创建一个名字为fildchar()的函数，函数声明如下：
+    def findchar(string,char)
+    findchar()要在字符串 string 中查找字符 char,找到就返回该值得索引，否则返回-1，不能
+    用string.*find()或者string.*index()函数和方法。
+#需求：findchar(string,char) 返回char的index 否则返回-1
+def findchar(string,char):
+    for index in range(len(string)):
+        if(string[index] == char):
+            return index;
+            break;
+    if(char not in string):
+        return  -1;
+print(findchar('gaocun','a1'))
+    (b)创建一个rfindchr()函数，查找字符char最后一次出现的位置，他和findchar()的功能类似，不过
+    他是从字符串的最后开始向前查的。
+    #需求：rfindchar(string,char) 返回char最后在string中的index 否则返回-1
+def rfindchar(string,char):
+    re = 0;
+    for index in range(len(string)):
+        if(string[index] == char):
+            re = index;
+    if(char not in string):
+        return  -1;
+    else:
+        return re;
+
+print(rfindchar('gaocuna','a'))
+
+    (c)创建第三个函数，名字叫subchar(),声明如下：
+    def subchar(string,origchar,newchar)
+    subchar()和findchar()类似,不同的是，如果匹配到就用新的字符替代，返回修改后字符。
+    #需求：subchar(string，orgichar，newchar) 替换
+def subchar(string,orgichar,newchar):
+    str_list = list(string);
+    for index in range(len(str_list)):
+        if(str_list[index] == orgichar):
+            str_list[index] = newchar;
+    return ''.join(str_list)
+print(subchar('gaocun','k','b'))
+
+6-14:随机数 设置一个“石头、剪子、包”的游戏，你小时候可能玩过，下面是规则：你和你的对手在同一个
+时间做出特定的手势，必须是下面三种手势：石头、剪刀、布，胜利者从下面的规则中产生，这个规则本身就
+是个悖论。
+    1.布包石头
+    2.石头砸剪刀
+    3.剪刀破布。
+    在你的计算机中，用户输入他的选项，计算机找一个选项，然后由你的程序决定谁是胜利者。
+import random
+#用户与计算机进行猜拳游侠
+user_choice = input("请出拳：石头、剪刀、布：")
+pc_choice = random.randint(1,3)
+choice_mapping = {1:'剪刀',2:'石头',3:'布'}
+#通过dict的value获取key
+def get_key(dict,ele):
+    return [k for k,v in dict.items() if v == ele];
+user_choice_num = get_key(choice_mapping,user_choice)[0];
+#判断输赢
+DIF = abs(user_choice_num - pc_choice)
+if(DIF == 0):
+    print('You :',user_choice,' VS PC:',choice_mapping[pc_choice],'打平！')
+if(DIF == 1):
+    if(user_choice_num>pc_choice):
+        print('You :',user_choice,' VS PC:',choice_mapping[pc_choice],'You 胜利！')
+    else:
+        print('You :', user_choice, ' VS PC:', choice_mapping[pc_choice], 'PC 胜利！')
+if(DIF == 2):
+    if(user_choice_num>pc_choice):
+        print('You :',user_choice,' VS PC:',choice_mapping[pc_choice],'PC 胜利！')
+    else:
+        print('You :', user_choice, ' VS PC:', choice_mapping[pc_choice], 'You 胜利！')
+
+
+6-15 转换
+    (1).给出两个可识别的日期，比如MM/DD/YY或者DD/MM/YY格式，计算这两个日期间的天数。
+import datetime
+#给定2个日期，求出这连个日期相差多少天
+date1 = '2018-01-12'
+date2 = '2019-01-13'
+#string2date
+str_2_date1 = datetime.datetime.strptime(date1,"%Y-%m-%d")
+str_2_date2 = datetime.datetime.strptime(date2,"%Y-%m-%d")
+#判断时间大小
+re = (str_2_date2-str_2_date1).days
+if(re>0):
+    print(str_2_date1,'在',str_2_date2,'的前边，两个日期相差：',abs(re),'天')
+
+    (2)给定一个人的生日，计算这个人从出生到现在经历的多少天，已经经历的每个闰月。
+import datetime
+#给定一个人的生日，计算出这个出生了多少天,并计算出经历的闰月
+date1 = '1992-01-12'
+#string2date
+str_2_date1 = datetime.datetime.strptime(date1,"%Y-%m-%d")
+str_2_date2 = datetime.datetime.now()
+#判断时间大小
+re = (str_2_date2-str_2_date1).days
+if(re>0):
+    print(str_2_date1,'在',str_2_date2,'的前边，两个日期相差：',abs(re),'天')
+
+    (3)给定一个日期，计算出此人距离下次过生日还差多少天
+import datetime
+#给定一个人的生日，计算出他还有多少天生日
+date1 = '1992-12-21'
+str_to_date = datetime.datetime.strptime(date1,'%Y-%m-%d')
+now_time = datetime.datetime.now()
+now_birth = str(now_time.year)+'-'+str(str_to_date.month)+'-'+str(str_to_date.day)
+now_birth_day = datetime.datetime.strptime(now_birth,'%Y-%m-%d')
+nenx_birth = str(now_time.year+1)+'-'+str(str_to_date.month)+'-'+str(str_to_date.day)
+next_birth_day = datetime.datetime.strptime(nenx_birth,'%Y-%m-%d')
+
+#判读生日过了没
+if(now_time > now_birth_day):
+    print('距离下一个生日还有：',(next_birth_day-now_time).days,'天')
+else:
+    print('距离下一个生日还有：', (now_birth_day - now_time).days, '天')
+
+
+6-17 方法，实现一个mypop()的函数，功能类似于列表的pop()方法，用一个列表作为输入，移出列表的最新的元素，并返回他。
+#模仿pop写个mypop()函数
+list1 = [1,2,3,4,5]
+def myPOP(list):
+    len1 =len(list);
+    del_ele = list[len1-1]
+    list.remove(del_ele)
+    return del_ele
+
+print(myPOP(list1))
+print(list1)
+
+
+6-18. zip() 内建函数，调研他的用法是主要事项
+#调研zip函数
+#zip(ite1,ite2...),接受两个以上的迭代器，并返回合并后迭代器
+list1 = [1,2,3,4]
+tuple1 = ('a','b','c','d')
+str = 'xyzc'
+zip1 = zip(list1,tuple1,str)
+for a,b,c in zip1:
+    print(a);
+    print(b);
+    print(c);
+

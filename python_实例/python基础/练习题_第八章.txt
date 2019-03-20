@@ -1,0 +1,194 @@
+01.循环 编写一个程序，让用户输入三个数字：（f）rom，（t）o，和（i）ncrement 以i为步长，从
+f计数到t，包括f和t 栗子：如果输入的是f == 2，t == 26，i == 4 程序将输出2,6,10,14,18,22,26
+答案：#需求：from：2 to:26 increment:4
+d_from =2
+d_to =26
+d_inc =4
+times = int((d_to-d_from)/4)
+for index in range(times):
+    print(d_from)
+    d_from = d_from+d_inc
+print(d_to)
+
+02.range() 按要求生成下面类表？
+1.[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+2.[3, 6, 9, 12, 15, 18]
+3.[-20, 200, 420, 640, 860]
+答案：
+#按要求生成下列list
+#[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+list_1 = []
+for i in range(10):
+    list_1.append(i)
+print(list_1)
+list_2 = []
+for i in range(3,20,3):
+    list_2.append(i)
+print(list_2)
+list_3 = []
+for i in range(-20,1000,220):
+    list_3.append(i)
+print(list_3)
+
+04. 给定函数 isprime(number),判断number是不是素数，返回true或false;
+#需求：isprime(number) 判断number是不是素数
+#意义：素数：number大于1且除了1和本身不再有其他因数。
+def isprime(number):
+    for i in range(2, number):
+        if number % i == 0:
+            print(number, '不是素数，因为有因子：', i)
+            return False;
+            break;
+    return True;
+#Test
+print(isprime(200))
+
+05.约数，完成一个名为 getfactors() 的函数. 它接受一个整数作为参数, 返回它所有
+约数的列表, 包括 1 和它本身
+#函数：getfactors(number)，返回number所有的约数列表，包括1和本身
+def getfactors(number):
+    list_1 = []
+    for i in range(1, number + 1):
+        if number % i == 0:
+            list_1.append(i)
+    return list_1
+print(getfactors(20))
+
+6.素因子分解 ，编写一个函数，参数为整数，返回该参数的所有素因子列表，这个过程叫做‘素因子分解’，
+例如：20 返回结果[2,2,5]
+#素因子分解
+#素数是没有素因子的
+#定理：任意一个整数都能被分解成若干个素数的乘积形式，且唯一
+#判断是不是素数
+def isprime(number):
+    for i in range(2, number):
+        if number % i == 0:
+            return False;
+            break;
+    return True;
+
+#求素数约数
+def getfactors(number):
+    list_1 = []
+    for i in range(2, number):
+        if number % i == 0:
+            if isprime(i):
+                 list_1.append(i)
+    return list_1
+
+
+#判断任务是否完成
+def getresult(number,list,aim_number):
+    #提取素数约数
+    aim_number =aim_number
+    result1 = 1
+    list1 = getfactors(number) + list
+    print('01:',list1)
+    #判断是否结束
+    for i in list1:
+        result1 = result1*i
+    print('02', result1)
+    result2 = int(aim_number/result1)
+    print('03',result2)
+    if result1 == aim_number:
+        print(aim_number,':结果1：:',list1)
+        #return list1
+    elif isprime(result2):
+        if(result2 != 1):
+            list1.append(result2)
+        #return list1
+        print(aim_number,':结果2：:',list1)
+    else:
+        #10 [2,5]
+        getresult(result2,list1,aim_number)
+
+getresult(200,[],200)
+
+
+09.全数 全数的定义：他的约数(不包括他自己)之和等于他自己 例如：6的约数是1,2,3因为
+1+2+3=6 所以6是一个完全数 编写一个函数isperfect()的函数，接受一个整数，如果是全数
+返回true，如果不是falus
+答案：
+#函数isperfect(number),判读是不是全数
+#求约数
+def isperfect(number):
+    sum = 0
+    list1 = []
+    for i in range(1,number):
+        if( (number%i) == 0):
+            list1.append(i)
+            sum = sum + i
+    if(sum == number):
+        print(number,':',list1)
+        return True
+    else:
+        print(number, ':', list1)
+        return False
+print(isperfect(6))
+
+
+08. 阶乘 一个数的阶乘被定义为从1到该数所有的乘积...N简写为N！，写一个函数，指定N返回N！
+的值  3！=3*2*1=6
+答案：
+#求N的阶乘
+def sumFac(number):
+    sum = 1
+    list1 = []
+    for i in range(1,number+1):
+        list1.append(i)
+        sum=sum*i
+    print(list1, '求和：',sum)
+    return sum
+print(sumFac(9))
+
+09.Fibonacci 数列，Fibonacci数列形如1,1,2,3,4,5,8,13,21，等等，也就是说，下一个值时序列
+中前两个值之和。写一个函数，给定N，返回第N个Fibonacci数字，例如，第一个Fibonacci数字
+是1，第6个是8.
+答案：
+#斐波纳挈数列：给出N计算出第N项
+def Fibonacci(N):
+    list1= [1,1]
+    if N <= 2:
+        return list1[N - 1]
+    else:
+       #数据装载
+       for i in range(N-2):
+           list1.append(list1[i]+list1[i+1])
+       print(list1)
+       #数据提取
+    return list1[N-1]
+
+#测试
+print(Fibonacci(2))
+
+10.文本处理 统计一句话中元音、辅音及单词(以空格分隔)的个数，忽略元音和辅音的特殊情况
+例如：‘h’，‘y’，‘qu’等
+答案：
+#业务意义：元音[AEIOU aeiou]
+#统计一句话中个元音和辅音及单词的个数
+def CountAlp(str):
+    list1 = ['A','E','I','O','U','a','e','i','o','u']
+    list_str = str.split(' ')
+    sum_Vo = 0
+    sum_Co = 0
+    print(list_str)
+    for ele in list_str:
+        for i in ele:
+            if i in list1:
+                sum_Vo = sum_Vo + 1
+            else:
+                sum_Co = sum_Co + 1
+    print('单词数量：',len(list_str))
+    print('元音数量：',sum_Vo)
+    print('辅音数量：',sum_Co)
+
+#Test
+CountAlp('Ai Io U')
+
+11.文本处理 按要求输出姓名列表，输入格式要求：“last name，first name”，及姓，名
+，如果用户输入错误，请纠正这些错误，并通知用户同时你还得记录错误的次数，最后打印列表
+答案：
+
+
+
+
