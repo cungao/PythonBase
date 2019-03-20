@@ -5,3 +5,4 @@ print(random.uniform(1,10))
 print(random.randint(1,10))
 #随机选取n个字符
 print(random.sample('gaocundawang',2))
+print(random.sample('gaocundawang',2))
